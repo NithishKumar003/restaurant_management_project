@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth.modles import User
+from django.contrib.auth.models import User
 
 class MenuItem(models.Model):
-    mame = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
-    price = models.decimalField(max_digits=8, decimal_places=2)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
     category = models.CharField(max_length=50)
 
     def __str__(self):
@@ -32,7 +32,7 @@ class Order(models.Model):
         self.save()
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.cascade, related_name='items')
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
     menu_item = models.ForeignKey(MenuItem, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 

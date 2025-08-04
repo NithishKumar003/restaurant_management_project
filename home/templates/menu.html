@@ -1,45 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>🍽 Our Menu</title>
+<html>
+    <title>Resturant Menu</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fffef9;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .menu-list {
-            max-width: 600px;
-            margin: 20px auto;
-        }
-        .menu-item {
-            border-bottom: 1px solid #ddd;
-            padding: 15px 0;
-        }
-        .menu-item h3 {
-            margin: 0;
-            font-size: 20px;
-        }
-        .menu-item p {
-            margin: 5px 0;
-            color: #555;
-        }
+        body{ font-family: Arial; background: #f2f2f2; padding: 20px; }
+        .menu-item { background: #fff; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
+        .price { float: right; color:green; }
     </style>
 </head>
 <body>
-    <h1>🍽 Our Menu</h1>
-    <div id="menu-container" class="menu-list">
-        <p>Loading menu...</p>
-    </div>
-
-    <script>
-        fetch('/api/menu/')
-            .then(response => response.json())
-            .then(data => {
-                const menuContainer = document.getElementById('menu-container');
+    <h1>Our Menu</h1>
+    {% for item in menu_items %}
+        <div class="menu-item">
+            <h3> {{ item.name }} <span class="price">${{ item.price }}</span></h3>
+            <p><strong>Category:</strong> {{ item.category }}</p>
+            <p>{{ item.description }}</p>
+        </div>
+    {% empty %}
+        <p>No menu items found.</p>
+    {% endfor %}
+</body>
+</html>

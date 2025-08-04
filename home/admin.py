@@ -6,11 +6,11 @@ class MenuItemAdmin(admin.ModelAdmin):
     list_display = ['name', 'price', 'available']
     search_fields = ['name']
 
-@admin.register(Order):
+@admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['customer', 'total_amount', 'status', 'created_at']
     list_filter = ['status', 'created_at']
 
-@admin.register(OrderItem):
+@admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
     list_display = ['order', 'menu_item', 'quantity']

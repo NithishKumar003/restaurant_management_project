@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🍽 Our Menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fffef9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .menu-list {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .menu-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+        .menu-item h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+        .menu-item p {
+            margin: 5px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍽 Our Menu</h1>
+    <div id="menu-container" class="menu-list">
+        <p>Loading menu...</p>
+    </div>
 
+    <script>
+        fetch('/api/menu/')
+            .then(response => response.json())
+            .then(data => {
+                const menuContainer = document.getElementById('menu-container');

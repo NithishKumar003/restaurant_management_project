@@ -20,7 +20,7 @@ class Order(models.Model):
     ]
 
     customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='Orders')
-    total_amount = models.decimalField(max_digits=10, decimal_places=2, default=0)
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='PENDING')
     created_at = models.DateTimeField(auto_now_add=True)
 

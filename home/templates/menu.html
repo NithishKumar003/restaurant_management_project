@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <title>Resturant Menu</title>
-    <style>
-        body{ font-family: Arial; background: #f2f2f2; padding: 20px; }
-        .menu-item { background: #fff; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow:0 2px 4px rgba(0,0,0,0.1); }
-        .price { float: right; color:green; }
-    </style>
+<head>
+    <title>{{ restaurant_name }}</title>
 </head>
 <body>
-    <h1>Our Menu</h1>
-    {% for item in menu_items %}
-        <div class="menu-item">
-            <h3> {{ item.name }} <span class="price">${{ item.price }}</span></h3>
-            <p><strong>Category:</strong> {{ item.category }}</p>
-            <p>{{ item.description }}</p>
-        </div>
-    {% empty %}
-        <p>No menu items found.</p>
-    {% endfor %}
+    <h1>Welcome to {{ restaurant_name }}</h1>
+    <h2>Menu</h2>
+    <div id="menu-list">
+        <p>Loading menu....</p>
+    </div>
+
+    <script>
+        fetch('/api/menu/')
+            .then(response => response.json())
+            .then(data => {
+                const menulist = document.getElementById('menu-list');
+                menuList.innerHTML = '';
+
+                data.forEach(item => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `
+                        <h3> ${item.name} </h3>
+                        <p> ${item.description} </p>
+                        <strong> ${item.price} </strong>
+                        <hr>
+                    `;
+                    menuList.appendChild(div);
+                });
+            })
+            .catch(error => {
+                document.getElementById('menu-list').innerHTML = '<p> Failed to load menu. </p>'
+            });
+    </script>
 </body>
 </html>

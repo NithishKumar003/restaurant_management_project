@@ -28,7 +28,7 @@ class Order(models.Model):
         return f"Order #{self.pk} by {self.customer.username}"
 
     def update_total(self):
-        self.total_amount = sum(item.menu.item.price * item.quantity for item in self.items.all())
+        self.total_amount = sum(item.menu_item.price * item.quantity for item in self.items.all())
         self.save()
 
 class OrderItem(models.Model):

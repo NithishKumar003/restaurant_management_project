@@ -3,7 +3,7 @@ from .models import MenuItem, Order, OrderItem
 
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
-    list_display = ['name', 'price', 'available']
+    list_display = ['name', 'price', 'category']
     search_fields = ['name']
 
 @admin.register(Order)

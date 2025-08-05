@@ -1,7 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>{{ restaurant_name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1,h2{
+            color: #2c3e50;
+        }
+
+        .menu-item{
+            margin-bottom: 15px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .menu-item h3{
+            margin: 0;
+            color: #34495e;
+        }
+
+        .menu-item p{
+            margin: 5px 0;
+            color: #7f8c8d;
+        }
+
+        .menu-item strong{
+            color: #27ae60;
+            font-size: 1.1em;
+        }
+
+        form{
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        button{
+            padding: 8px 16px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background-color: #219150;
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to {{ restaurant_name }}</h1>
@@ -32,5 +88,12 @@
                 document.getElementById('menu-list').innerHTML = '<p> Failed to load menu. </p>'
             });
     </script>
+
+    <h2> Contact Us </h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>

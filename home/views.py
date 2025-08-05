@@ -1,13 +1,11 @@
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from django.shortcuts import render
-import requests
-from .models import MenuItem
+from django.conf import settings
 
 def homepage(request):
-    return render(request, 'home/menu.html')
-
-def menu_view(request):
-    menu_items = MenuItem.objects.all()
-    return render(request, 'home/menu.html', {'menu_items': menu_items})
+    restaurant_name = getattr(settings, "RESTAURANT_NAME", "Restaurant")
+    return render(request, 'home/menu.html', {"restaurant_name": restaurant_name})
 
 class MenuAPIView(APIView):
     def get(self, request):

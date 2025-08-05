@@ -3,6 +3,9 @@ from rest_framework.response import Response
 from django.shortcuts import render, redirect
 from django.conf import settings
 from .forms import ContactForm
+from django.conf import settings
+from .models import MenuItem
+from .serializers import MenuItemSerializer
 
 def homepage(request):
     restaurant_name = getattr(settings, "RESTAURANT_NAME", "Restaurant")
@@ -19,21 +22,6 @@ def homepage(request):
 
 class MenuAPIView(APIView):
     def get(self, request):
-        menu = [
-            {
-                "name":"Margherita Pizza",
-                "description": "Classic cheese and tomato pizza",
-                "price":250.00
-            },
-            {
-                "name": "Veg burger",
-                "description": "Loaded veg patty with lettuce and tomato",
-                "price": 120.00
-            },
-            {
-                "name": "Pasta Alfredo", 
-                "description": "Creamy white sauce pasta with vegetables",
-                "price": 180.00
-            }
-        ]
-        return Response(menu)
+        menu_items = MenuItem.objects.filter(available=True)
+        serializer = MenuItemSerializer(menu_items, many=True)
+        return Response(serializer.data)

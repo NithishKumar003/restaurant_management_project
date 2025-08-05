@@ -18,12 +18,12 @@ class MenuAPIView(APIView):
             {
                 "name": "Veg burger",
                 "description": "Loaded veg patty with lettuce and tomato",
-                "prive": 120.00
+                "price": 120.00
             },
             {
                 "name": "Pasta Alfredo", 
                 "description": "Creamy white sauce pasta with vegetables",
-                "price": "180.00"
+                "price": 180.00
             }
         ]
         return Response(menu)

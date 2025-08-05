@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import MenuItem, Order, OrderItem
+from .models import MenuItem, Order, OrderItem, ContactSubmission
 
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
@@ -14,3 +14,5 @@ class OrderAdmin(admin.ModelAdmin):
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
     list_display = ['order', 'menu_item', 'quantity']
+
+admin.site.register(ContactSubmission)

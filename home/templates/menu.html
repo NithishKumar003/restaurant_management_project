@@ -14,7 +14,7 @@
         fetch('/api/menu/')
             .then(response => response.json())
             .then(data => {
-                const menulist = document.getElementById('menu-list');
+                const menuList = document.getElementById('menu-list');
                 menuList.innerHTML = '';
 
                 data.forEach(item => {

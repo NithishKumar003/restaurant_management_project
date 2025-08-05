@@ -61,6 +61,22 @@
 </head>
 <body>
     <h1>Welcome to {{ restaurant_name }}</h1>
+
+    <!-- Address and map  -->
+    <section>
+        <h2>Our Addresses </h2>
+        <p>123 Main Street, Your city, Country</p>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387190.2799144891!2d-74.2598673!3d40.697601!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQxJzUxLjYiTiA3NMKWMTUnMjAuOCJX!5e0!3m2!1sen!2sin!4v1597078453734!5m2!1sen!2sin"
+            width="400"
+            height="300"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy">
+        </iframe>
+    </section>
+
+     <!-- Menu  -->
     <h2>Menu</h2>
     <div id="menu-list">
         <p>Loading menu....</p>
@@ -89,6 +105,7 @@
             });
     </script>
 
+    <!-- Contact form -->
     <h2> Contact Us </h2>
     <form method="post">
         {% csrf_token %}

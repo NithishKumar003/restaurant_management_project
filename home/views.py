@@ -29,15 +29,19 @@ def homepage(request):
 
     context = {
         'restaurant_name': getattr(settings, 'RESTAURANT_NAME', 'My Restaurant'),
-        'form': form
+        'form': form,
+        'menu_items': menu_items,
     }
     return render(request, 'home.html', context)
 
 class MenuAPIView(APIView):
     def get(self, request):
-        menu_items = MenuItem.objects.filter(available=True)
-        serializer = MenuItemSerializer(menu_items, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        try:
+            menu_items = MenuItem.objects.filter(available=True)
+            serializer = MenuItemSerializer(menu_items, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         # menu = [
         #     {
         #         "name": "Margherita Pizza",

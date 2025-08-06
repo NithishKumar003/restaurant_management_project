@@ -77,16 +77,19 @@
     </section>
 
      <!-- Menu  -->
-    <h2>Menu</h2>
-    <ul>
-        {% for item in menu_items %}
-            <li>
-                <strong>{{ item.name }}</strong> - Rs.{{ item.price }}<br>
-                <em>{{ item.description }}</em>
-            </li>
-        {% endfor %}
-    </ul>
+    <section> 
+        <h2>Menu</h2>
+        <ul id="menu-list" class="menu-list">
+            {% for item in menu_items %}
+                <li>
+                    <strong>{{ item.name }}</strong> - Rs.{{ item.price }}<br>
+                    <em>{{ item.description }}</em>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
 
+    <!-- Dynamic menu loader -->
     <script>
         fetch('/api/menu/')
             .then(response => response.json())
@@ -95,14 +98,12 @@
                 menuList.innerHTML = '';
 
                 data.forEach(item => {
-                    const div = document.createElement('div');
-                    div.innerHTML = `
-                        <h3> ${item.name} </h3>
-                        <p> ${item.description} </p>
-                        <strong> ${item.price} </strong>
-                        <hr>
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <strong>${item.name}</strong> - rs.${item.price}<br>
+                        <em>${item.description}</em>
                     `;
-                    menuList.appendChild(div);
+                    menuList.appendChild(li);
                 });
             })
             .catch(error => {
@@ -111,11 +112,13 @@
     </script>
 
     <!-- Contact form -->
-    <h2> Contact Us </h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+    <section>
+        <h2> Contact Us </h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </section>
 </body>
 </html>

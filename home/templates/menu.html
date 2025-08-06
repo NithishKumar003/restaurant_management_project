@@ -79,14 +79,15 @@
      <!-- Menu  -->
     <section> 
         <h2>Menu</h2>
-        <ul id="menu-list" class="menu-list">
+        <div id="menu-list" class="menu-list">
             {% for item in menu_items %}
-                <li>
-                    <strong>{{ item.name }}</strong> - Rs.{{ item.price }}<br>
-                    <em>{{ item.description }}</em>
-                </li>
+                <div class="menu-item">
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.description }}</p>
+                    <strong>Rs.{{ item.price }}</strong>
+                </div>
             {% endfor %}
-        </ul>
+        </div>
     </section>
 
     <!-- Dynamic menu loader -->
@@ -98,12 +99,13 @@
                 menuList.innerHTML = '';
 
                 data.forEach(item => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `
-                        <strong>${item.name}</strong> - rs.${item.price}<br>
-                        <em>${item.description}</em>
+                    const div = document.createElement('div');
+                    div.innerHTML = `
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                        <strong>Rs.${item.price}</strong>
                     `;
-                    menuList.appendChild(li);
+                    menuList.appendChild(div);
                 });
             })
             .catch(error => {

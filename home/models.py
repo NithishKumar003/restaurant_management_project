@@ -61,4 +61,8 @@ class ContactSubmission(models.Model):
     def __str__(self):
         return f"{self.name} ({self.email})"
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=15, blank=True)
+
         

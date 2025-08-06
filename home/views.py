@@ -8,16 +8,14 @@ from .models import MenuItem
 from .serializers import MenuItemSerializer
 
 def homepage(request):
-    restaurant_name = getattr(settings, "RESTAURANT_NAME", "Restaurant")
-    contact_form = ContactForm(request.POST or None)
+    menu = MenuItem.objects.filter(available=True)
+    contact_form = ContactForm()
 
-    if request.method == 'POST' and contact_form.is_valid():
-        contact_form.save()
-        return redirect('homepage')
-
-    return render(request, 'home/menu.html', {
-        "restaurant_name": restaurant_name,
-        "form": contact_form
+    return render(request, 'home.html', {
+        'menu': menu,,
+        'restaurant_name': getattr(settings, 'RESTAURANT_NAME', 'My Restaurant'),
+        'address': '123 Main Street, Chennai, India', 
+        'form': contact_form,
     })
 
 class MenuAPIView(APIView):

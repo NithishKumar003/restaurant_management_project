@@ -5,14 +5,24 @@ from django.conf import settings
 from .forms import ContactForm
 from .models import MenuItem
 from .serializers import MenuItemSerializer
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+
+def handle_contact_form(request):
+    # Handles the contact form logic separately flr clarity.
+    form = ContactForm(request.POST)
+    if form.is_valid():
+        form.save()
+        messages.success(request, "Thank you for contacting us!")
+        return redirect('home')
+    return form
 
 def homepage(request):
     if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Thank you for contacting us!")
-            return redirect('home')
+        result = handle_contact_form(request)
+        if isinstance(result, HttpResponseRedirect):
+            return result
+        form = result
     else:
         form = ContactForm()
 

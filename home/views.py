@@ -7,6 +7,7 @@ from .models import MenuItem
 from .serializers import MenuItemSerializer
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from rest_framework import status
 
 def handle_contact_form(request):
     # Handles the contact form logic separately flr clarity.

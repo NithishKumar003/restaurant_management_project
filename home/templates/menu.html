@@ -78,9 +78,14 @@
 
      <!-- Menu  -->
     <h2>Menu</h2>
-    <div id="menu-list">
-        <p>Loading menu....</p>
-    </div>
+    <ul>
+        {% for item in menu_items %}
+            <li>
+                <strong>{{ item.name }}</strong> - Rs.{{ item.price }}<br>
+                <em>{{ item.description }}</em>
+            </li>
+        {% endfor %}
+    </ul>
 
     <script>
         fetch('/api/menu/')

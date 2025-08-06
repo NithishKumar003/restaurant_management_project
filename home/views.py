@@ -3,20 +3,24 @@ from rest_framework.response import Response
 from django.shortcuts import render, redirect
 from django.conf import settings
 from .forms import ContactForm
-from django.conf import settings
 from .models import MenuItem
 from .serializers import MenuItemSerializer
 
 def homepage(request):
-    menu = MenuItem.objects.filter(available=True)
-    contact_form = ContactForm()
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Thank you for contacting us!")
+            return redirect('home')
+    else:
+        form = ContactForm()
 
-    return render(request, 'home.html', {
-        'menu': menu,,
+    context = {
         'restaurant_name': getattr(settings, 'RESTAURANT_NAME', 'My Restaurant'),
-        'address': '123 Main Street, Chennai, India', 
-        'form': contact_form,
-    })
+        'form': form
+    }
+    return render(request, 'home.html', context)
 
 class MenuAPIView(APIView):
     def get(self, request):

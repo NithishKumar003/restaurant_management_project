@@ -35,24 +35,24 @@ def homepage(request):
 
 class MenuAPIView(APIView):
     def get(self, request):
-        # menu_items = MenuItem.objects.filter(available=True)
-        # serializer = MenuItemSerializer(menu_items, many=True)
-        # return Response(serializer.data)
-        menu = [
-            {
-                "name": "Margherita Pizza",
-                "description": "Classic cheese pizza withfresh basil and tomatoes.",
-                "price": 299.00
-            },
-            {
-                "name": "Butter chicken",
-                "description": "Creamy tomato-based curry with tender chicken pieces.",
-                "price": 349.00
-            },
-            {
-                "name": "Veg Chicken",
-                "description": "Fragrant rice with mixed vegetables and indian spices",
-                "price": 199.00
-            }
-        ]
-        return Response(menu, status=status.HTTP_200_OK)
+        menu_items = MenuItem.objects.filter(available=True)
+        serializer = MenuItemSerializer(menu_items, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        # menu = [
+        #     {
+        #         "name": "Margherita Pizza",
+        #         "description": "Classic cheese pizza withfresh basil and tomatoes.",
+        #         "price": 299.00
+        #     },
+        #     {
+        #         "name": "Butter chicken",
+        #         "description": "Creamy tomato-based curry with tender chicken pieces.",
+        #         "price": 349.00
+        #     },
+        #     {
+        #         "name": "Veg Chicken",
+        #         "description": "Fragrant rice with mixed vegetables and indian spices",
+        #         "price": 199.00
+        #     }
+        # ]
+        # return Response(menu, status=status.HTTP_200_OK)

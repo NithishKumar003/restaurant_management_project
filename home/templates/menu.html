@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ restaurant_name }}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
 </head>
-<body>
-    <h1>Welcome to {{ restaurant_name }}</h1>
+<body style="font-family: 'Segoe UI', sans-serif; background-color: #f9f9f9; color: #333; margin: 0; padding: 0;">
+    <h1 style="text-align: center; background-color: #b91c1c; color: white; padding: 20px; margin: 0;">
+        Welcome to {{ restaurant_name }}
+    </h1>
 
     <!-- Address and map  -->
-    <section>
-        <h2>Our Addresses </h2>
-        <p>{{ restaurant_address }}</p>
+    <section style="max-width: 800px; margin: 40px auto; padding: 0 20px">
+        <h2 style="color: #b91c1c;">Our Addresses </h2>
+        <p style="margin-bottom: 20px;">{{ restaurant_address }}</p>
         <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387190.2799144891!2d-74.2598673!3d40.697601!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQxJzUxLjYiTiA3NMKWMTUnMjAuOCJX!5e0!3m2!1sen!2sin!4v1597078453734!5m2!1sen!2sin"
             width="400"
@@ -23,14 +25,14 @@
     </section>
 
      <!-- Menu  -->
-    <section> 
-        <h2>Menu</h2>
-        <div id="menu-list" class="menu-list">
+    <section style="max-width: 800px; margin: 40px auto; padding: 0 20px;"> 
+        <h2 style="color: #b91c1c">Menu</h2>
+        <div id="menu-list" style="display: grid; grid-template-columns: 1fr 1fr; gap:20px;" class="menu-list">
             {% for item in menu_items %}
-                <div class="menu-item">
-                    <h3>{{ item.name }}</h3>
-                    <p>{{ item.description }}</p>
-                    <strong>Rs.{{ item.price }}</strong>
+                <div style="background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1)" class="menu-item">
+                    <h3 style="margin: 0 0 10px;">{{ item.name }}</h3>
+                    <p style="margin: 0 0 10px;">{{ item.description }}</p>
+                    <strong style="color: #e63946">Rs.{{ item.price }}</strong>
                 </div>
             {% endfor %}
         </div>
@@ -47,9 +49,9 @@
                 data.forEach(item => {
                     const div = document.createElement('div');
                     div.innerHTML = `
-                        <h3>${item.name}</h3>
-                        <p>${item.description}</p>
-                        <strong>Rs.${item.price}</strong>
+                        <h3 style="margin: 0 0 10px;">${item.name}</h3>
+                        <p style="margin: 0 0 10px;">${item.description}</p>
+                        <strong style="color: #e63946;">Rs.${item.price}</strong>
                     `;
                     menuList.appendChild(div);
                 });
@@ -60,12 +62,14 @@
     </script>
 
     <!-- Contact form -->
-    <section>
-        <h2> Contact Us </h2>
-        <form method="post">
+    <section style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+        <h2 style="color: #b91c1c"> Contact Us </h2>
+        <form method="post" style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Submit</button>
+            <button type="submit" style:"background-color: #b91c1c; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+                Submit
+            </button>
         </form>
     </section>
 </body>

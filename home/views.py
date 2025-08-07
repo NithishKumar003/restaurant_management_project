@@ -60,4 +60,10 @@ class MenuAPIView(APIView):
         # return Response(menu, status=status.HTTP_200_OK)
 
 def about_page(request):
-    return render(request, 'about.html')
+    restaurant = get_object_or_404(RestaurantInfo, pk=1)
+
+    context = {
+        'restaurant_name': restaurant.name
+        'restaurant_description': "Welcome to our cozy restaurant where we serve fresh, flavorful meals every day.",
+    }
+    return render(request, 'about.html', context)

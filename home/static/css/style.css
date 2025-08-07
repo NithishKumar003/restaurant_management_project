@@ -1,1 +1,16 @@
+body{
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f9f9f9;
+}
 
+h1{
+    color: #b91c1c;
+}
+
+form{
+    margin-top: 20px;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+}

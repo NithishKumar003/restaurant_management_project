@@ -1,9 +1,9 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from .forms import ContactForm
-from .models import MenuItem
+from .models import MenuItem, RestaurantInfo
 from .serializers import MenuItemSerializer
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -58,3 +58,6 @@ class MenuAPIView(APIView):
         #     }
         # ]
         # return Response(menu, status=status.HTTP_200_OK)
+
+def about_page(request):
+    return render(request, 'about.html')

@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-s^x_u!itekxd=@a3o3zv4d%hw$j6d#2v358wgltxl8rc(-^t&p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -131,3 +131,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 RESTAURANT_NAME ="My Tasty Restaurant"
 RESTAURANT_ADDRESS = "123 Main Street, Chennai, Tamilnadu, India"
+
+from django.conf.urls import handler404
+from django.shortcuts import render 
+
+def custom_404_view(request, exception):
+    return render(request, '404.html', status=404)
+
+handler404 = custom_404_view

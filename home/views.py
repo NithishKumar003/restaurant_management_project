@@ -19,12 +19,14 @@ def handle_contact_form(request):
     return form
 
 def homepage(request):
+    restaurant = get_object_or_404(RestaurantInfo, pk=1)
+
     menu_items = MenuItem.objects.all()
     form = ContactForm()
 
     context = {
-        'restaurant_name': getattr(settings, 'RESTAURANT_NAME', 'Our Restaurant'),
-        'restaurant_address': getattr(settings, 'RESTAURANT_ADDRESS', ''),
+        'restaurant_name': restaurant.name,
+        'restaurant_address': restaurant.address,
         'form': form,
         'menu_items': menu_items,
     }

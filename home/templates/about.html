@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title> About Us - My Tasty Restaurant </title>
+        <title> About Us - {{ restaurant_name }} </title>
         <style>
             body {
                 font-family: "Segoe UI", sans-serif;
@@ -51,12 +51,10 @@
     </head>
     <body>
         <div class="container">
-            <h1> About My Tasty Restaurant </h1>
+            <h1> About {{ restaurant_name }}</h1>
             <!-- <img src="{% static 'images/restaurant.jpg' %}" alt = "Our Restaurant"> -->
             <p>
-                Welcome to <strong>My Tasty Restaurant</strong>, where flavor meets teadition.
-                We serve delicious meals made with love and fresh ingredients. Whether you're here
-                for a quick bite or a full meal, we make sure every plate brings joy.
+                {{ restaurant_description }}
             </p>
             <a href="/"> Back to Home</a>
         </div>

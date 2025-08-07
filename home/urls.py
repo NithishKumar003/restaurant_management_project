@@ -4,4 +4,5 @@ from .views import *
 urlpatterns = [
     path('', homepage, name='home'),
     path('api/menu/', MenuAPIView.as_view(), name='menu-api'),
+    path('about/', views.about_page, name='about'),
 ]

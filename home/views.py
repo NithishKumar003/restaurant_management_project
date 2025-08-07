@@ -19,20 +19,16 @@ def handle_contact_form(request):
     return form
 
 def homepage(request):
-    if request.method == 'POST':
-        result = handle_contact_form(request)
-        if isinstance(result, HttpResponseRedirect):
-            return result
-        form = result
-    else:
-        form = ContactForm()
+    menu_items = MenuItem.objects.all()
+    form = ContactForm()
 
     context = {
-        'restaurant_name': getattr(settings, 'RESTAURANT_NAME', 'My Restaurant'),
+        'restaurant_name': getattr(settings, 'RESTAURANT_NAME', 'Our Restaurant'),
+        'restaurant_address': getattr(settings, 'RESTAURANT_ADDRESS', ''),
         'form': form,
         'menu_items': menu_items,
     }
-    return render(request, 'home.html', context)
+    return render(request, 'menu.html', context)
 
 class MenuAPIView(APIView):
     def get(self, request):

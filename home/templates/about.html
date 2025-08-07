@@ -2,4 +2,63 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title> About Us - 
+        <title> About Us - My Tasty Restaurant </title>
+        <style>
+            body {
+                font-family: "Segoe UI", sans-serif;
+                padding: 50px;
+                background-color: #fff9f0;
+                color: #333
+            }
+
+            .container {
+                max-width: 800px;
+                margin: auto;
+                text-align: center;
+            }
+
+            img {
+                width: 100%;
+                max-width: 500px;
+                border-radius: 10px;
+            }
+
+            h1{
+                color: #e63946;
+                font-size: 36px; 
+                margin-bottom: 20px;
+            }
+
+            p {
+                font-size: 18px;
+                line-height: 1.8;
+            }
+
+            a {
+                display: inline-block;
+                margin-top: 20px;
+                text-decoration: none;
+                background-color: #e63946;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 5px;
+            }
+
+            a:hover {
+                background-color: #d62828;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1> About My Tasty Restaurant </h1>
+            <!-- <img src="{% static 'images/restaurant.jpg' %}" alt = "Our Restaurant"> -->
+            <p>
+                Welcome to <strong>My Tasty Restaurant</strong>, where flavor meets teadition.
+                We serve delicious meals made with love and fresh ingredients. Whether you're here
+                for a quick bite or a full meal, we make sure every plate brings joy.
+            </p>
+            <a href="/"> Back to Home</a>
+        </div>
+    </body>
+</html>

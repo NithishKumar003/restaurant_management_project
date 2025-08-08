@@ -7,13 +7,13 @@ from .forms import ContactForm
 from .models import MenuItem, ContactSubmission, RestaurantInfo
 from .serializers import MenuItemSerializer
 from django.contrib import messages
-from django.http import HttpResponseRedirect, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseRedirect
 from rest_framework import status
-
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 def handle_contact_form(request):
-    """Handles the contact form logic."""
+    # Handles the contact form logic separately flr clarity.
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -24,16 +24,12 @@ def handle_contact_form(request):
         form = ContactForm()
     return render(request, 'contact.html', {'form': form})
 
-
 def home_view(request):
-    """Displays the home page with restaurant name."""
     return render(request, 'home.html', {
         'restaurant_name': getattr(settings, 'RESTAURANT_NAME', 'My Tasty Restaurant')
     })
 
-
 def homepage(request):
-    """Displays the menu and restaurant info."""
     info = RestaurantInfo.objects.first()
     menu_items = MenuItem.objects.all()
 
@@ -43,23 +39,17 @@ def homepage(request):
     }
     return render(request, 'menu.html', context)
 
-
 def contact_page(request):
-    """Renders the contact page."""
     info = RestaurantInfo.objects.first()
     return render(request, 'contact.html', {'restaurant_info': info})
 
-
 @api_view(['GET'])
 def menu_api(request):
-    """Returns menu data as JSON (DRF API endpoint)."""
     items = MenuItem.objects.all()
     serializer = MenuItemSerializer(items, many=True)
     return Response(serializer.data)
 
-
 def about_page(request):
-    """Renders the about page with restaurant info."""
     restaurant = RestaurantInfo.objects.first()
     if not restaurant:
         messages.warning(request, "Restaurant information not found.")
@@ -71,28 +61,22 @@ def about_page(request):
     }
     return render(request, 'about.html', context)
 
-
 def custom_404_view(request, exception):
-    """Custom 404 error page."""
     return render(request, '404.html', status=404)
-
 
 @csrf_exempt
 def reservations(request):
-    """Handles reservation logic (placeholder for now)."""
     info = RestaurantInfo.objects.first()
     if request.method == 'POST':
         name = request.POST.get('name')
         date = request.POST.get('date')
         time = request.POST.get('time')
 
-        # Basic validation
         if not name or not date or not time:
-            return JsonResponse({'error': 'All fields are required.'}, status=400)
+            return JsonResponse({'error': 'All Fields are Required.'}, status=400)
 
-        # Placeholder: save to model later
-        return JsonResponse({'message': 'Reservation received (placeholder)'})
-
+        return JsonResponse({'message': 'Reservation recevied (placeholder)'})
+        
     return render(request, 'reservations.html', {
         'restaurant_name': info.name if info else 'My Tasty Restaurant',
     })

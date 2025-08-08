@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from .forms import ContactForm
-from .models import MenuItem, Contact
+from .models import MenuItem, ContactSubmission
 from .serializers import MenuItemSerializer
 from django.contrib import messages
 from django.http import HttpResponseRedirect

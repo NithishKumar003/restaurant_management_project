@@ -19,10 +19,18 @@ def handle_contact_form(request):
     return form
 
 def homepage(request):
-    restaurant = get_object_or_404(RestaurantInfo, pk=1)
+    # restaurant = get_object_or_404(RestaurantInfo, pk=1)
 
-    menu_items = MenuItem.objects.all()
-    form = ContactForm()
+    # menu_items = MenuItem.objects.all()
+    # form = ContactForm()
+
+    restaurant_name = settings.restaurant_name
+    restaurant_address = settings.RESTAURANT_ADDRESS
+    menu_items = MenuItem.objects,all()
+
+    form = ContactForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
 
     context = {
         'restaurant_name': restaurant.name,
@@ -32,14 +40,14 @@ def homepage(request):
     }
     return render(request, 'menu.html', context)
 
-class MenuAPIView(APIView):
-    def get(self, request):
-        try:
-            menu_items = MenuItem.objects.filter(available=True)
-            serializer = MenuItemSerializer(menu_items, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+# class MenuAPIView(APIView):
+#     def get(self, request):
+#         try:
+#             menu_items = MenuItem.objects.filter(available=True)
+#             serializer = MenuItemSerializer(menu_items, many=True)
+#             return Response(serializer.data, status=status.HTTP_200_OK)
+#         except Exception as e:
+#             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         # menu = [
         #     {
         #         "name": "Margherita Pizza",
@@ -58,6 +66,12 @@ class MenuAPIView(APIView):
         #     }
         # ]
         # return Response(menu, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def menu_api(request):
+    items = MenuItem.objects.all()
+    serializer = MenuItemSerializer(items, many=True)
+    return Response(serializer.data)
 
 def about_page(request):
     restaurant = get_object_or_404(RestaurantInfo, pk=1)

@@ -1,3 +1,6 @@
+{% load static %}
+{% load tz %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,5 +81,7 @@
             </button>
         </form>
     </section>
+
+    {% include 'footer.html' with current_year=now "Y" %}
 </body>
 </html>

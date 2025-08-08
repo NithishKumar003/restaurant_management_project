@@ -1,5 +1,5 @@
 from rest_framework.views import APIView
-from rest_framework..decorators import api_view
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
@@ -25,12 +25,7 @@ def home_view(request):
     })
 
 def homepage(request):
-    # restaurant = get_object_or_404(RestaurantInfo, pk=1)
-
-    # menu_items = MenuItem.objects.all()
-    # form = ContactForm()
-
-    info = RestaurantInfo.objexts.first()
+    info = RestaurantInfo.objects.first()
     menu_items = MenuItem.objects.all()
 
     context = {
@@ -39,34 +34,7 @@ def homepage(request):
     }
     return render(request, 'menu.html', context)
 
-# class MenuAPIView(APIView):
-#     def get(self, request):
-#         try:
-#             menu_items = MenuItem.objects.filter(available=True)
-#             serializer = MenuItemSerializer(menu_items, many=True)
-#             return Response(serializer.data, status=status.HTTP_200_OK)
-#         except Exception as e:
-#             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        # menu = [
-        #     {
-        #         "name": "Margherita Pizza",
-        #         "description": "Classic cheese pizza withfresh basil and tomatoes.",
-        #         "price": 299.00
-        #     },
-        #     {
-        #         "name": "Butter chicken",
-        #         "description": "Creamy tomato-based curry with tender chicken pieces.",
-        #         "price": 349.00
-        #     },
-        #     {
-        #         "name": "Veg Chicken",
-        #         "description": "Fragrant rice with mixed vegetables and indian spices",
-        #         "price": 199.00
-        #     }
-        # ]
-        # return Response(menu, status=status.HTTP_200_OK)
-
-def contact_pag(request):
+def contact_page(request):
     info = RestaurantInfo.objects.first()
     return render(request, 'contact.html', {'restaurant_info': info})
 
@@ -80,7 +48,7 @@ def about_page(request):
     restaurant = get_object_or_404(RestaurantInfo, pk=1)
 
     context = {
-        'restaurant_name': restaurant.name
+        'restaurant_name': restaurant.name,
         'restaurant_description': "Welcome to our cozy restaurant where we serve fresh, flavorful meals every day.",
     }
     return render(request, 'about.html', context)

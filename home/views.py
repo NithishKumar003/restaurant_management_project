@@ -9,6 +9,8 @@ from .serializers import MenuItemSerializer
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from rest_framework import status
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 def handle_contact_form(request):
     # Handles the contact form logic separately flr clarity.
@@ -17,7 +19,7 @@ def handle_contact_form(request):
         form.save()
         messages.success(request, "Thank you for contacting us!")
         return redirect('home')
-    return form
+    return render(request, 'contact.html', {'form': form})
 
 def home_view(request):
     return render(request, 'home.html', {
@@ -45,7 +47,10 @@ def menu_api(request):
     return Response(serializer.data)
 
 def about_page(request):
-    restaurant = get_object_or_404(RestaurantInfo, pk=1)
+    restaurant = RestaurantInfo.objects.first()
+    if not restaurant:
+        messages.error(request, "Restaurant information not found.")
+        return redirect('home')
 
     context = {
         'restaurant_name': restaurant.name,
@@ -56,8 +61,15 @@ def about_page(request):
 def custom_404_view(request, exception):
     return render(request, '404.html', status=404)
 
+@csrf_exempt
 def reservations(request):
     info = RestaurantInfo.objects.first()
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        date = request.POST.get('date')
+        time = request.POST.get('time')
+
+        return JsonResponse({'message': 'Reservation recevied (placeholder)'})
     return render(request, 'reservations.html', {
         'restaurant_name': info.name if info else 'My Tasty Restaurant',
     })

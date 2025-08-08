@@ -84,3 +84,6 @@ def about_page(request):
         'restaurant_description': "Welcome to our cozy restaurant where we serve fresh, flavorful meals every day.",
     }
     return render(request, 'about.html', context)
+
+def custom_404_view(request, exception):
+    return render(request, '404.html', status=404)

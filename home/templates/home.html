@@ -1,3 +1,6 @@
+{% load static %}
+{% load tz %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,5 +26,7 @@
 <body>
     <h1>Welcome to {{ restaurant_name }}</h1>
     <p>We’re excited to serve you delicious meals with love and care!</p>
+
+    {% include 'footer.html' with current_year=now "Y" %}
 </body>
 </html>

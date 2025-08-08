@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from .forms import ContactForm
-from .models import MenuItem, ContactSubmission
+from .models import MenuItem, ContactSubmission, RestaurantInfo
 from .serializers import MenuItemSerializer
 from django.contrib import messages
 from django.http import HttpResponseRedirect
@@ -25,18 +25,11 @@ def homepage(request):
     # menu_items = MenuItem.objects.all()
     # form = ContactForm()
 
-    restaurant_name = settings.restaurant_name
-    restaurant_address = settings.RESTAURANT_ADDRESS
-    menu_items = MenuItem.objects,all()
-
-    form = ContactForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        form.save()
+    info = RestaurantInfo.objexts.first()
+    menu_items = MenuItem.objects.all()
 
     context = {
-        'restaurant_name': restaurant.name,
-        'restaurant_address': restaurant.address,
-        'form': form,
+        'restaurant_info': info,
         'menu_items': menu_items,
     }
     return render(request, 'menu.html', context)

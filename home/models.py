@@ -68,9 +68,10 @@ class UserProfile(models.Model):
     def __str__(self):
         return f"Profile Of {self.user.username}    
 
-# class RestaurantInfo(models.Model):
-#     name = models.CharField(max_length=255)
-#     address = models.TextField()
+class RestaurantInfo(models.Model):
+    name = models.CharField(max_length=255)
+    address = models.TextField()
+    phone = models.CharField(max_length=20)
 
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return self.name

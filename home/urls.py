@@ -6,5 +6,6 @@ urlpatterns = [
     path('menu/', views.homepage, name='homepage'),
     path('api/v1/menu/', views.menu_api, name='menu-api'),
     path('about/', views.about_page, name='about'),
-    path('contact/', views.contact_page, name='contact')
+    path('contact/', views.contact_page, name='contact'),
+    path('reservations/', views.reservations, name='reservations'),
 ]

@@ -62,7 +62,8 @@ def homepage(request):
         # return Response(menu, status=status.HTTP_200_OK)
 
 def contact_pag(request):
-    return render(request, 'contact.html')
+    info = RestaurantInfo.objects.first()
+    return render(request, 'contact.html', {'restaurant_info': info})
 
 @api_view(['GET'])
 def menu_api(request):

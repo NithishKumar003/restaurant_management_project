@@ -1,3 +1,6 @@
+{% load static %}
+{% load tz %}
+
 <!DOCTYPE html>
 <html lamg="en">
     <head>
@@ -9,5 +12,7 @@
         <p>Phone: +91 {{ restaurant_info.phone }}</p>
         <p>Email: @gmail.com</p>
         <p>Address: {{ restaurant_info.address }}</p>
+
+        {% include 'footer.html' with current_year=noe "Y"%}
     </body>
 </html>

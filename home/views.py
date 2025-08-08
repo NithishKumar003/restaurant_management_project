@@ -19,6 +19,11 @@ def handle_contact_form(request):
         return redirect('home')
     return form
 
+def home_view(request):
+    return render(request, 'home.html', {
+        'restaurant_name': getattr(settings, 'RESTAURANT_NAME', 'My Tasty Restaurant')
+    })
+
 def homepage(request):
     # restaurant = get_object_or_404(RestaurantInfo, pk=1)
 
@@ -78,4 +83,5 @@ def about_page(request):
         'restaurant_name': restaurant.name
         'restaurant_description': "Welcome to our cozy restaurant where we serve fresh, flavorful meals every day.",
     }
+
     return render(request, 'about.html', context)

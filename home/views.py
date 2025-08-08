@@ -83,5 +83,4 @@ def about_page(request):
         'restaurant_name': restaurant.name
         'restaurant_description': "Welcome to our cozy restaurant where we serve fresh, flavorful meals every day.",
     }
-
     return render(request, 'about.html', context)

@@ -1,4 +1,5 @@
 from rest_framework.views import APIView
+from rest_framework..decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
@@ -66,6 +67,9 @@ def homepage(request):
         #     }
         # ]
         # return Response(menu, status=status.HTTP_200_OK)
+
+def contact_pag(request):
+    return render(request, 'contact.html')
 
 @api_view(['GET'])
 def menu_api(request):

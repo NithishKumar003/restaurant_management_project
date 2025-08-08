@@ -123,6 +123,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 TEMPLATES[0]['DIRS'] = [BASE_DIR / "templates"]
 
@@ -133,11 +134,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 RESTAURANT_NAME ="My Tasty Restaurant"
 RESTAURANT_ADDRESS = "123 Main Street, Chennai, Tamilnadu, India"
-
-from django.conf.urls import handler404
-from django.shortcuts import render 
-
-def custom_404_view(request, exception):
-    return render(request, '404.html', status=404)
-
-handler404 = custom_404_view

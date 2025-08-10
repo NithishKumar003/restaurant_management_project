@@ -22,9 +22,12 @@
             font-size: 1.2rem;
         }
     </style>
-    <link rel="stylesheet" src="{% static '' %}"
+    <link rel="stylesheet" src="{% static 'css/style.css' %}"
 </head>
 <body>
+    <div class="logo-container">
+        <img src="{% static 'home/images/logo.png' %}" alt="Restaurant logo">
+    </div>
     <h1>Welcome to {{ restaurant_name }}</h1>
     <p>We’re excited to serve you delicious meals with love and care!</p>
 

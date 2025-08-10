@@ -11,6 +11,7 @@ from django.http import HttpResponseRedirect
 from rest_framework import status
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.db import DatabaseError
 
 def handle_contact_form(request):
     # Handles the contact form logic separately flr clarity.
@@ -45,9 +46,19 @@ def contact_page(request):
 
 @api_view(['GET'])
 def menu_api(request):
-    items = MenuItem.objects.all()
-    serializer = MenuItemSerializer(items, many=True)
-    return Response(serializer.data)
+    try:
+        menu_items = MenuItem.objects.all().values('name', 'description', 'price')
+        return JsonResponse(list(menu_items), safe=False)
+    except DatabaseError as db_error:
+        # Handle database-specific errors
+        return JsonResponse(
+            {"error": "Unable to fetch menu items due to a database issue."}, status=500
+        )
+    except Exception as e:
+        # Handle any other unexpected errors
+        return JsonResponse(
+            {"error": "An unecpected error occured. Please try again later."}, status=500
+        )
 
 def about_page(request):
     restaurant = RestaurantInfo.objects.first()

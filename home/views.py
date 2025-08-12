@@ -1,17 +1,19 @@
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
-from .forms import ContactForm
-from .models import MenuItem, ContactSubmission, RestaurantInfo
-from .serializers import MenuItemSerializer
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from rest_framework import status
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db import DatabaseError
+
+from .forms import ContactForm
+from .models import MenuItem, ContactSubmission, RestaurantInfo
+from .serializers import MenuItemSerializer
 
 def handle_contact_form(request):
     # Handles the contact form logic separately flr clarity.
@@ -26,15 +28,18 @@ def handle_contact_form(request):
     return render(request, 'contact.html', {'form': form})
 
 def home_view(request):
+
     try:
         info = RestaurantInfo.objects.first()
         menu_items = MenuItem.objects.all()
+
         restaurant_name = info.name if info else "My Tasty Restaurant"
 
         return render(request, 'home.html', {
             'restaurant_name': restaurant_name, 
             'menu_items': menu_items
         })
+
     except DatabaseError:
         messages.error(request, "Unable to load homepage due to a database issue.")
         return redirect('error_page')
@@ -55,14 +60,18 @@ def contact_page(request):
 
 @api_view(['GET'])
 def menu_api(request):
+
     try:
         menu_items = MenuItem.objects.all().values('name', 'description', 'price')
+
         return JsonResponse(list(menu_items), safe=False)
+
     except DatabaseError as db_error:
         # Handle database-specific errors
         return JsonResponse(
             {"error": "Unable to fetch menu items due to a database issue."}, status=500
         )
+
     except Exception as e:
         # Handle any other unexpected errors
         return JsonResponse(
@@ -70,16 +79,19 @@ def menu_api(request):
         )
 
 def about_page(request):
-    restaurant = RestaurantInfo.objects.first()
-    if not restaurant:
-        messages.warning(request, "Restaurant information not found.")
-        return redirect('home')
+    try:
+        info = RestaurantInfo.objects.first()
+        
+        return render(request, 'about.html', {
+            'restaurant_name': info.name if info else "My Tasty Restaurant",
+            'restaurant_description': getattr(info, 'description', 'No description available.')
+        })
 
-    context = {
-        'restaurant_name': restaurant.name,
-        'restaurant_description': "Welcome to our cozy restaurant where we serve fresh, flavorful meals every day.",
-    }
-    return render(request, 'about.html', context)
+    except DatabaseError:
+        messages.error(request, "unable to load about page due to database issue.")
+        return render(request, 'error.html', {
+            'error_message': 'There was a problem loading the about page.'
+        })
 
 def custom_404_view(request, exception):
     return render(request, '404.html', status=404)

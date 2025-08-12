@@ -29,6 +29,21 @@
         <img src="{% static 'home/images/logo.png' %}" alt="Restaurant logo">
     </div>
     <h1>Welcome to {{ restaurant_name }}</h1>
+
+    <!-- search bar -->
+    <form method="GET" action="">
+        <input type="text" name="q" placeholder="Search menu items..." style="padding:8px; width:250px;">
+        <button type="submit" style="padding:8px;">Search</button>
+    </form>
+
+    <hr>
+
+    <!-- Menu items will be displayed here -->
+    <div id="menu-list">
+        {% for item in menu_items %}
+            <p>{{ item.name }} - rs{{ item.price }}</p>
+        {% endfor %}
+    </div>
     <p>We’re excited to serve you delicious meals with love and care!</p>
 
     {% now "Y" as current_year %}

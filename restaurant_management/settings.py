@@ -68,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'home.context_processors.restaurant_opening_hours',
             ],
         },
     },
@@ -134,3 +135,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 RESTAURANT_NAME ="My Tasty Restaurant"
 RESTAURANT_ADDRESS = "123 Main Street, Chennai, Tamilnadu, India"
+
+RESTAURANT_OPENING_HOURS = "Mon-Fri: 11am-9pm, Sat-Sun: 10am-10pm"

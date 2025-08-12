@@ -15,3 +15,11 @@ class ContactForm(forms.ModelForm):
             'email': 'Email Address', 
             'message': 'Message',
         }
+
+class FeedbackForm(forms.ModelForm):
+    class Meta:
+        model = Feedback
+        fields = ['name', 'comments']
+        widgets = {
+            'comments': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Write your feedback here...'}),
+        }

@@ -27,7 +27,7 @@ def handle_contact_form(request):
 
 def home_view(request):
     return render(request, 'home.html', {
-        'restaurant_name': getattr(settings, 'RESTAURANT_NAME', 'My Tasty Restaurant')
+        'restaurant_name': restaurant_name, 'menu_items': menu_items
     })
 
 def homepage(request):

@@ -27,7 +27,8 @@ def handle_contact_form(request):
 
 def home_view(request):
     return render(request, 'home.html', {
-        'restaurant_name': restaurant_name, 'menu_items': menu_items
+        'restaurant_name': info.name if info elsle 'My Tasty Restaurant', 
+        'menu_items': menu_items
     })
 
 def homepage(request):

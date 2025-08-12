@@ -21,5 +21,17 @@ class FeedbackForm(forms.ModelForm):
         model = Feedback
         fields = ['name', 'comments']
         widgets = {
-            'comments': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Write your feedback here...'}),
+            'name': forms.TextInput(attrs={
+                'placeholder': 'Your Name (optional)',
+                'class': 'form-control'
+            }),
+            'comments': forms.Textarea(attrs={
+                'rows': 4,
+                'placeholder': 'Write your feedback here...',
+                'class': 'form-control'
+            }),
+        }
+        lables = {
+            'name': 'Name', 
+            'comments': 'Your Feedback', 
         }

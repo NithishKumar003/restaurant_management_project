@@ -26,10 +26,18 @@ def handle_contact_form(request):
     return render(request, 'contact.html', {'form': form})
 
 def home_view(request):
-    return render(request, 'home.html', {
-        'restaurant_name': info.name if info elsle 'My Tasty Restaurant', 
-        'menu_items': menu_items
-    })
+    try:
+        info = RestaurantInfo.objects.first()
+        menu_items = MenuItem.objects.all()
+        restaurant_name = info.name if info else "My Tasty Restaurant"
+
+        return render(request, 'home.html', {
+            'restaurant_name': restaurant_name, 
+            'menu_items': menu_items
+        })
+    except DatabaseError:
+        messages.error(request, "Unable to load homepage due to a database issue.")
+        return redirect('error_page')
 
 def homepage(request):
     info = RestaurantInfo.objects.first()

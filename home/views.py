@@ -11,7 +11,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db import DatabaseError
 
-from .forms import ContactForm
+from .forms import ContactForm, FeedbackForm
 from .models import MenuItem, ContactSubmission, RestaurantInfo
 from .serializers import MenuItemSerializer
 
@@ -112,3 +112,15 @@ def reservations(request):
     return render(request, 'reservations.html', {
         'restaurant_name': info.name if info else 'My Tasty Restaurant',
     })
+
+def feedback_page_view(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Thank you for your feedback!")
+            return redirect('feedback_page')
+    else:
+        form = FeedbackForm()
+
+    return render(request, 'feedback.html', {'form': form})

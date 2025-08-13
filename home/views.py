@@ -69,9 +69,18 @@ def contact_page(request):
 def menu_api(request):
 
     try:
-        menu_items = MenuItem.objects.all().values('name', 'description', 'price')
+        menu_items = MenuItem.objects.all()
 
-        return JsonResponse(list(menu_items), safe=False)
+        data = [
+            {
+                "name": item.name,
+                "description": item.description,
+                "price": item.price,
+                "image": request.build_absolute_uri(item.image.url) if item.image else None
+            }
+            for item in menu_items
+        ]
+        return JsonResponse(data, safe=False)
 
     except DatabaseError as db_error:
         # Handle database-specific errors

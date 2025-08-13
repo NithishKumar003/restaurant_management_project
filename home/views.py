@@ -30,13 +30,20 @@ def handle_contact_form(request):
 def home_view(request):
 
     try:
-        info = RestaurantInfo.objects.first()
+        info = RestaurantInfo.objects.select_related("location").first()
         menu_items = MenuItem.objects.all()
 
         restaurant_name = info.name if info else "My Tasty Restaurant"
 
+        location = getattr(info, "location", None)
+        restaurant_address = (
+            f"{location.address}, {location.city}, {location.state} - {location.zip_code}"
+            if location else "Address not available"
+        )
+
         return render(request, 'home.html', {
-            'restaurant_name': restaurant_name, 
+            'restaurant_name': restaurant_name,
+            'restaurant_address': restaurant_address, 
             'menu_items': menu_items
         })
 

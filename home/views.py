@@ -91,7 +91,7 @@ def menu_api(request):
     except Exception as e:
         # Handle any other unexpected errors
         return JsonResponse(
-            {"error": "An unecpected error occured. Please try again later."}, status=500
+            {"error": "An unexpected error occured. Please try again later."}, status=500
         )
 
 def about_page(request):

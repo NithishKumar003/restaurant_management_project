@@ -65,11 +65,17 @@ def contact_page(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, "Thank you! Your submission has been received.")
-            return redirect('contact_page')
+            try:
+                form.save()
+                messages.success(request, "Thank you! Your submission has been received.")
+                return redirect('contact_page')
+            except Exception as e:
+                messages.error(request, "An error occurred while submitting the form please try again.")
+        else:
+            messages.error(request, "Please correct the errors below.")
     else:
         form = ContactForm()
+
     return render(request, 'contact.html', {'form': form})        
 
 

@@ -141,3 +141,5 @@ RESTAURANT_NAME ="My Tasty Restaurant"
 RESTAURANT_ADDRESS = "123 Main Street, Chennai, Tamilnadu, India"
 
 RESTAURANT_OPENING_HOURS = "Mon-Fri: 11am-9pm, Sat-Sun: 10am-10pm"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

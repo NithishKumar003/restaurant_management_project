@@ -53,12 +53,19 @@ def home_view(request):
 
 def homepage(request):
     restaurant = RestaurantInfo.objects.select_related('location').first()
+    query = request.GET.get('q', '')
     menu_items = MenuItem.objects.all()
+
+    if query:
+        menu_items = MenuItem.objects.filter(name_icontains=query)
+    else:
+        menu_items = MenuItem.objects.all()
 
     context = {
         'restaurant_name': restaurant.name if restaurant else "My Tasty Restaurant",
         'restaurant_address': f"{restaurant.location.address}, {restaurant.location.city}, {restaurant.location.state} - {restaurant.location.zip_code}" if restaurant else "Address not available",
         'menu_items': menu_items,
+        'search_query' : query,
     }
 
     return render(request, 'menu.html', context)

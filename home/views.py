@@ -62,8 +62,16 @@ def homepage(request):
     return render(request, 'menu.html', context)
 
 def contact_page(request):
-    info = RestaurantInfo.objects.first()
-    return render(request, 'contact.html', {'restaurant_info': info})
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Thank you! Your submission has been received.")
+            return redirect('contact_page')
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})        
+
 
 @api_view(['GET'])
 def menu_api(request):

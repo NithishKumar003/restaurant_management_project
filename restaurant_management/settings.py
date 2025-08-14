@@ -143,3 +143,11 @@ RESTAURANT_ADDRESS = "123 Main Street, Chennai, Tamilnadu, India"
 RESTAURANT_OPENING_HOURS = "Mon-Fri: 11am-9pm, Sat-Sun: 10am-10pm"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'example@gmail.com'
+EMAIL_HOST_PASSWORD = 'pASSWORD'
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+RESTAURANT_EMAIL = 'restaurant_reciver_email@gmail.com'

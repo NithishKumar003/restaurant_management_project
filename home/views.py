@@ -117,6 +117,14 @@ def menu_api(request):
             {"error": "An unexpected error occured. Please try again later."}, status=500
         )
 
+def menu_page(request):
+    try:
+        menu_items = MenuItem.objects.all()
+    except:
+        menu_items=[]
+
+    return render(request, "menu.html", {"menu_items": menu_items})
+
 def about_page(request):
     try:
         info = RestaurantInfo.objects.first()

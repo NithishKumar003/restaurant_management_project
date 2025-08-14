@@ -18,6 +18,15 @@
     <h1 style="text-align: center; background-color: #b91c1c; color: white; padding: 20px; margin: 0;">
         Welcome to {{ restaurant_name }}
     </h1>
+    <!-- Opening hours -->
+    <div class="opening-hours">
+        <h2>Opening Hours</h2>
+        <ul>
+            {% for day, hours in restaurant.opening_hours.items %}
+                <li><strong>{{ day }}:</strong> {{ hours }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 
     <!-- Address and map  -->
     <section style="max-width: 800px; margin: 40px auto; padding: 0 20px">

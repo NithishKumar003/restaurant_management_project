@@ -74,14 +74,23 @@ def contact_page(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
             try:
-                form.save()
-                messages.success(request, "Thank you! Your submission has been received.")
+                send_mail(
+                    subject=f"New Contact Form Submission from {name}",
+                    message=f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}",
+                    from_email=settings.EMAIL_HOST_USER,
+                    recipient_list=[settings.EMAIL_HOST_USER],
+                    fail_silently=False,
+                )
+                messages.success(request, "Thank you! Your message has been sent.")
                 return redirect('contact_page')
             except Exception as e:
-                messages.error(request, "An error occurred while submitting the form please try again.")
-        else:
-            messages.error(request, "Please correct the errors below.")
+                messages.error(request, f"Error sending email: {e}")
     else:
         form = ContactForm()
 

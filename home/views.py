@@ -56,10 +56,11 @@ def homepage(request):
     menu_items = MenuItem.objects.all()
 
     context = {
-        'restaurant_name': restaurant.name if restaurant else "My Tasty Restaurent",
-        'restaurant_address': f"{restaurant.location.address}, {restaurant.location.city}, {restaurant.location.state} - {restaurant.location.zip_code}" if restaurant else "Address not available"
+        'restaurant_name': restaurant.name if restaurant else "My Tasty Restaurant",
+        'restaurant_address': f"{restaurant.location.address}, {restaurant.location.city}, {restaurant.location.state} - {restaurant.location.zip_code}" if restaurant else "Address not available",
         'menu_items': menu_items,
     }
+
     return render(request, 'menu.html', context)
 
 def contact_page(request):

@@ -52,11 +52,12 @@ def home_view(request):
         return redirect('error_page')
 
 def homepage(request):
-    info = RestaurantInfo.objects.first()
+    restaurant = RestaurantInfo.objects.select_related('location').first()
     menu_items = MenuItem.objects.all()
 
     context = {
-        'restaurant_info': info,
+        'restaurant_name': restaurant.name if restaurant else "My Tasty Restaurent",
+        'restaurant_address': f"{restaurant.location.address}, {restaurant.location.city}, {restaurant.location.state} - {restaurant.location.zip_code}" if restaurant else "Address not available"
         'menu_items': menu_items,
     }
     return render(request, 'menu.html', context)

@@ -10,6 +10,7 @@ urlpatterns = [
     path('reservations/', views.reservations, name='reservations'),
     path('feedback/', views.feedback_page_view, name='feedback_page'),
     path('menu/add/<int:item_id>/', views.add_to_cart, name='add_to_cart'),
+    path('faq/', views.faq, name='faq')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

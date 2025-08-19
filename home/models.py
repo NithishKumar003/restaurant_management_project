@@ -81,7 +81,9 @@ class RestaurantLocation(models.Model):
 class RestaurantInfo(models.Model):
     name = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
-    location = models.OneToOneField(RestaurantLocation, on_delete=models.CASCADE, related_name="restaurant_info")
+    location = models.OneToOneField(
+        RestaurantLocation, on_delete=models.CASCADE, related_name="restaurant_info"
+    )
 
     def __str__(self):
         return self.name

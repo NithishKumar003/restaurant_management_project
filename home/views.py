@@ -171,3 +171,18 @@ def feedback_page_view(request):
         form = FeedbackForm()
 
     return render(request, 'feedback.html', {'form': form})
+
+def add_to_cart(request, item_id):
+    menu_item = get_object_or_404(MenuItem, id=item_id)
+
+    cart = request.session.get('cart', {})
+    cart[str(item_id)] = cart.get(str(item_id), 0) + 1
+
+    request.session['cart'] = cart
+    request.session.modified = True
+
+    return redirect('menu')
+
+def cart_count(request):
+    cart = request.session.get('cart', {})
+    return sum(cart.values())

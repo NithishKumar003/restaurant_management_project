@@ -30,6 +30,11 @@
                 <img src="{% static 'home/images/logo.png' %}" alt="Restaurant logo" style="max-width:150px; margin-bottom:20px;">
             </div>
             <h1>Welcome to {{ restaurant_name }}</h1>
+            <nav style="background-color: #f8f8f8; padding: 10px;">
+                <a href="/" style="margin-right: 15px;">Home</a>
+                <a href="{% url 'about' %}"> About </a>
+                <a href="{% url 'contact' %}">Contact</a>
+            </nav>
         </header>
 
         <!-- search bar -->

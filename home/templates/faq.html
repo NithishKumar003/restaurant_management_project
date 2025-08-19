@@ -7,21 +7,30 @@
         <title> FAQ - My Tasty Restaurant</title>
     </head>
     <body style="font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; margin: 0; padding: 0;">
-        <div style="max-width: 800px; margin: 40px auto; background: #fff; padding: 20px 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-            <h1 style="text-align: center; font-size: 28px; font-weight: bold; margin-bottom: 30px; color: #2c3e50;">
-                Frequently Asked Questions
-            </h1>
-            
-            <div style="margin-bottom: 20px;">
-                <h2 style="font-size: 20px; margin-bottom: 8px; color: #27ae60">1. What type of food do you serve?</h2>
-                <p style="font-size: 16px; line-height: 1.6;">We specialize in multi-cuisine dishes including Indian, Chinese and Continental favorites.</p>
-            </div>
+        {% extends "base.html" %}
 
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="/" style="display: inline-block; padding: 10px 20px; background-color: #27ae60; color: white; text-decoration: none; border-radius: 5px; font-size: 16px;">
-                    Back to home
-                </a>
+        {% block breadcrumbs %}
+            <a href="/" style="color: #27ae60; text-decoration: none;">Home</a>
+            &gt; <span style="color: #333;">FAQ</span>
+        {% endblock %}
+
+        {% block content %}
+            <div style="max-width: 800px; margin: 40px auto; background: #fff; padding: 20px 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <h1 style="text-align: center; font-size: 28px; font-weight: bold; margin-bottom: 30px; color: #2c3e50;">
+                    Frequently Asked Questions
+                </h1>
+                
+                <div style="margin-bottom: 20px;">
+                    <h2 style="font-size: 20px; margin-bottom: 8px; color: #27ae60">1. What type of food do you serve?</h2>
+                    <p style="font-size: 16px; line-height: 1.6;">We specialize in multi-cuisine dishes including Indian, Chinese and Continental favorites.</p>
+                </div>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="/" style="display: inline-block; padding: 10px 20px; background-color: #27ae60; color: white; text-decoration: none; border-radius: 5px; font-size: 16px;">
+                        Back to home
+                    </a>
+                </div>
             </div>
-        </div>
+        {% endblock %}
     </body>
 </html>

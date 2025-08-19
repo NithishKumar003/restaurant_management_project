@@ -65,6 +65,7 @@ def homepage(request):
 
     context = {
         'restaurant_name': restaurant.name if restaurant else "My Tasty Restaurant",
+        'restaurant_phone': restaurant.phone if resturant else "Not available",
         'restaurant_address': (
             f"{restaurant.location.address}, {restaurant.location.city}," 
             "{restaurant.location.state} - {restaurant.location.zip_code}"0

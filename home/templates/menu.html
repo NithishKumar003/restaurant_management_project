@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body style="font-family: 'Segoe UI', sans-serif; background-color: #f9f9f9; color: #333; margin: 0; padding: 0;">
+    <div style="text-align: center; margin-top: 20px;">
+        {% if restaurant.logo %}
+            <img src="{{ restaurant.logo.url }}" alt="{{ restaurant.name }} logo"
+                style="width: 150px; height: auto; border-radius: 10px;">
+        {% else %}
+            <p style="color: gray;">[No logo uploded]</p>
+        {% endif %}
+    </div>
+
     <nav style="background-color: #f8f8f8; padding: 10px;">
         <a href="/" style="margin-right: 15px;">Home</a>
         <a href="{% url 'about' %}">About</a>

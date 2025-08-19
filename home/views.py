@@ -41,6 +41,7 @@ def home_view(request):
             f"{location.address}, {location.city}, {location.state} - {location.zip_code}"
             if location else "Address not available"
         )
+        restaurant_phone: settings.RESTAURANT_PHONE
 
         return render(request, 'home.html', {
             'restaurant_name': restaurant_name,
@@ -65,7 +66,7 @@ def homepage(request):
 
     context = {
         'restaurant_name': restaurant.name if restaurant else "My Tasty Restaurant",
-        'restaurant_phone': restaurant.phone if resturant else "Not available",
+        'restaurant_phone': settings.RESTAURANT_PHONE,
         'restaurant_address': (
             f"{restaurant.location.address}, {restaurant.location.city}," 
             "{restaurant.location.state} - {restaurant.location.zip_code}"0

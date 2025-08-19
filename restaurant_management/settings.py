@@ -139,7 +139,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 RESTAURANT_NAME ="My Tasty Restaurant"
 RESTAURANT_ADDRESS = "123 Main Street, Chennai, Tamilnadu, India"
-
+RESTAURANT_PHONE ="+91 9876543210"
 RESTAURANT_OPENING_HOURS = "Mon-Fri: 11am-9pm, Sat-Sun: 10am-10pm"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

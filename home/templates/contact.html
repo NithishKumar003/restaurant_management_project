@@ -11,18 +11,28 @@
         <form id="contactForm" action="{% url 'contact_page' %}" method="post">
             {% csrf_token %}
 
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name"
-                value="{{ form.name.value|default_if_none:'' }}" required>
+            <label for="id_name"> Name: </label><br>
+            {{ form.name }}<br>
+            {% for error in form.name.errors %}
+                <span style="color: red;">{{ error }}</span><br>
+            {% endfor %}
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email"
-                value="{{ form.email.value|default_if_none:'' }}" required>
+            <label for="id_email"> Email: </label><br>
+            {{ form.email }}<br>
+            {% for error in form.email.errors %}
+                <span style="color: red;"> {{ error }}</span><br>
+            {% endfor %}
 
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required>{{ form.message.value|default_if_none:'' }}</textarea>
+            <label for="id_message"> Message: </label><br>
+            {{ form.message }}<br>
+            {% for error in form.message.errors %}
+                <span style="color:red;">{{ error }}</span><br>
+            {% endfor %}
 
-            <button type="submit">Submit</button>
+            <br>
+            <button type="submit" style="padding: 10px 20px; background: #4caf50; color: white; border: none; cursor: pointer;">
+                Send
+            </button>
         </form>
         <script>
             document.getElementById("contactForm").addEventListener("submit", function(event) {

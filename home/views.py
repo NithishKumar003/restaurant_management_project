@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db import DatabaseError
+from django.core.mail import send_mail
 
 from .forms import ContactForm, FeedbackForm
 from .models import MenuItem, ContactSubmission, RestaurantInfo
@@ -55,6 +56,7 @@ def homepage(request):
     restaurant = RestaurantInfo.objects.select_related('location').first()
     query = request.GET.get('q', '')
     menu_items = MenuItem.objects.all()
+    cart_items = cart_count(request)
 
     if query:
         menu_items = MenuItem.objects.filter(name_icontains=query)
@@ -66,6 +68,7 @@ def homepage(request):
         'restaurant_address': f"{restaurant.location.address}, {restaurant.location.city}, {restaurant.location.state} - {restaurant.location.zip_code}" if restaurant else "Address not available",
         'menu_items': menu_items,
         'search_query' : query,
+        "cart_items" : cart_items,
     }
 
     return render(request, 'menu.html', context)

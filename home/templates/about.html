@@ -52,14 +52,22 @@
         </style>
     </head>
     <body>
-        <div class="container">
-            <h1> About {{ restaurant_name }}</h1>
-            <img src="{% static 'images/restaurant.jpg' %}" alt = "Our Restaurant" style="width: 80%; max-width: 500px; border-radius: 10px; margin:20px 0;">
-            <p>
-                {{ restaurant_description }}
-            </p>
-            <a href="{% url 'home' %}"> Back to Home</a>
-        </div>
+        {% extends "base.html" %}
+        {% block breadcrumbs %}
+            <a href="/" style="color: #27ae60; text-decoration: none;">Homr</a>
+            &gt; <span style="color: #333;">About Us</span>
+        {% endblock %}
+
+        {% block content %}
+            <div class="container">
+                <h1> About {{ restaurant_name }}</h1>
+                <img src="{% static 'images/restaurant.jpg' %}" alt = "Our Restaurant" style="width: 80%; max-width: 500px; border-radius: 10px; margin:20px 0;">
+                <p>
+                    {{ restaurant_description }}
+                </p>
+                <a href="{% url 'home' %}"> Back to Home</a>
+            </div>
+        {% endblock %}
 
         <footer>
             {% now "Y" as current_year %}

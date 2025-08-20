@@ -81,7 +81,27 @@
                 </div>
                 <p>We're excited to serve you delicious meals with love and care!</p>
             {% endblock %}
+
+            <a href="{% url 'order_page' %}"
+                style="
+                    display: inline-block;
+                    padding: 14px 28px;
+                    margin-top: 20px;
+                    background-color: #ff5722;
+                    color: white;
+                    text-decoration: none;
+                    font-size: 18px;
+                    font-weight: bold;
+                    border-radius: 8px;
+                    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+                    transition: background-color 0.3s, transform: 0.2s;
+                "
+                onmouseover="this.style.backgroundColor='#e64a19'; this.style.transform='scale(1.05)'"
+                onmouseover="this .style.backgroundColor='#ff5722'; this.style.transform='scale(1)'">
+                Order now
+            </a>
         </main>
+
 
         <section style="margin-bottom: 20px;">
             <h2> Login </h2>

@@ -151,3 +151,6 @@ EMAIL_HOST_PASSWORD = 'pASSWORD'
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 RESTAURANT_EMAIL = 'restaurant_reciver_email@gmail.com'
+
+LOGIN_REDIRECT_URL = "homepage"
+LOGOUT_REDIRECT_URL ="homepage"

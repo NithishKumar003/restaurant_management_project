@@ -195,3 +195,6 @@ def add_to_cart(request, item_id):
 def cart_count(request):
     cart = request.session.get('cart', {})
     return sum(cart.values())
+
+def order_page(request):
+    return render(request, "order.html")

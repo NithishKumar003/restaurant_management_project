@@ -15,6 +15,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name="login.html"), name="login"),
     paath('logout/', auth_views.LogoutViews.as_view(next_page="homepage"), name="logout"),
     path('order/', views.order_page, name="order_page"),
+    path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

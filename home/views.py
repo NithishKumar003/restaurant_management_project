@@ -198,3 +198,6 @@ def cart_count(request):
 
 def order_page(request):
     return render(request, "order.html")
+
+def privacy_policy(request):
+    return render(request, 'privacy_policy.html')

@@ -1,4 +1,7 @@
 <footer style="text-align: center; padding: 20px; background-color: #f1f1f1; color: #333; margin-top: 40px;">
     <p>&copy; {{ current_year }} {{ restaurant_name }}. All rights reserved.</p>
-    <p>Opening Hours: {{ opening_hours }}</p>
+    <p>Opening Hours: {{ opening_hours }} | <a href="{% url 'privacy_policy' %}" style="color: #0066cc; text-decoration: none;">
+        Privacy Policy </a>
+    </p>
+    
 </footer>

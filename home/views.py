@@ -13,7 +13,7 @@ from django.db import DatabaseError
 from django.core.mail import send_mail
 
 from .forms import ContactForm, FeedbackForm
-from .models import MenuItem, ContactSubmission, RestaurantInfo
+from .models import MenuItem, ContactSubmission, RestaurantInfo, Special
 from .serializers import MenuItemSerializer
 import random
 
@@ -36,6 +36,7 @@ def home_view(request):
         menu_items = MenuItem.objects.all()
 
         restaurant_name = info.name if info else "My Tasty Restaurant"
+        specials = Special.objects.all()
 
         location = getattr(info, "location", None)
         restaurant_address = (
@@ -47,7 +48,8 @@ def home_view(request):
         return render(request, 'home.html', {
             'restaurant_name': restaurant_name,
             'restaurant_address': restaurant_address, 
-            'menu_items': menu_items
+            'menu_items': menu_items,
+            'specials': specials
         })
 
     except DatabaseError:

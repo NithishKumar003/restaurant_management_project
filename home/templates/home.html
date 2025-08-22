@@ -25,13 +25,22 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}"
     </head>
     <body>
-        <h1 style="text-align: center; color: #333; margin-top: 20px; font-family:Georgia, serif;">
-            My Tasty Restaurant
-        </h1>
+        <div>
+            <h1 style="text-align: center; color: #333; margin-top: 20px; font-family:Georgia, serif;">
+                My Tasty Restaurant
+            </h1>
 
-        <p style="text-align: center; color: #666; margin-top: 10px; font-size:18px; font-style: italic;">
-            "Where Taste Meets Tradition"
-        </p>
+            <p style="text-align: center; color: #666; margin-top: 10px; font-size:18px; font-style: italic;">
+                "Where Taste Meets Tradition"
+            </p>
+
+            <div style="display: flex; justfy-content: center; flex-wrap: warp; gap: 20px; margin-top: 40px;">
+                <img src="/static/images/food1.jpg" alt="Special dish 1"
+                    style="width: 300px; height: auto; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                <img src="/static/images/food2.jpg" alt="Special dish 2"
+                    style="width: 300px; height: auto; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+            </div>
+        </div>
 
         <h2 style="text-align: center; margin-top: 40px; color: #0066cc;"> Today's Specials </h2>
 
@@ -94,6 +103,7 @@
                         <strong> {% now "h:i A" %}</strong>
                     </p>
                 </div>
+
 
                 <!-- Menu items will be displayed here -->
                 <div id="menu-list">

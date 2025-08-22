@@ -16,7 +16,9 @@ urlpatterns = [
     path('logout/', auth_views.LogoutViews.as_view(next_page="homepage"), name="logout"),
     path('order/', views.order_page, name="order_page"),
     path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
-    path('order-confirmation/', views.order_confirmation, name='order_confirmation')
+    path('order-confirmation/', views.order_confirmation, name='order_confirmation'),
+    path('cart/', views.view_cart, name='view_cart'),
+    path('cart/add/<int:item_id>', views.add_to_cart, name='add_to_cart')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

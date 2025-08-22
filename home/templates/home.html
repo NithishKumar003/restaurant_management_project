@@ -33,6 +33,22 @@
             "Where Taste Meets Tradition"
         </p>
 
+        <h2 style="text-align: center; margin-top: 40px; color: #0066cc;"> Today's Specials </h2>
+
+        {% if specials %}
+            <div style="display: flex; justify-content: center; flex-warp: warp; gap: 20px; margin-top: 20px;">
+                {% for special in specials %}
+                    <div style="border: 1px solid #ddd; border-radius: 10px; padding: 15px; width: 250px; box-shadow:0 2px 5px rgba(0,0,0,0.1); text-align:center; ">
+                        <h3 style="color: #333;"> {{ special.name }}</h3>
+                        <p style="color: #555; font-size: 14px;"> {{ special.description }} </p>
+                        <p style="font-weight: bold; color: green;"> {{ specila.price }} </p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p style="text-align: center; font-size: 16px; color: red;">No specials available today. </p>
+        {% endif %}
+
         <header>
             <div class="logo-container">
                 <img src="{% static 'home/images/logo.png' %}" alt="Restaurant logo" style="max-width:150px; margin-bottom:20px;">

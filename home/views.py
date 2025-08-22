@@ -201,3 +201,7 @@ def order_page(request):
 
 def privacy_policy(request):
     return render(request, 'privacy_policy.html')
+
+def order_confirmation(request):
+    order_number = random.randint(1000, 9999)
+    return render(request, 'order_confirmation.html', {'order_number': order_number})

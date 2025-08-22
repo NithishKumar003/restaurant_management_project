@@ -183,19 +183,33 @@ def feedback_page_view(request):
     return render(request, 'feedback.html', {'form': form})
 
 def add_to_cart(request, item_id):
-    menu_item = get_object_or_404(MenuItem, id=item_id)
-
     cart = request.session.get('cart', {})
-    cart[str(item_id)] = cart.get(str(item_id), 0) + 1
-
+    if str(item_id) in cart:
+        cart[str(item_id)] += 1
+    else:
+        cart[str(item_id)] = 1
+    
     request.session['cart'] = cart
-    request.session.modified = True
+    return redirect('view_cart')
 
-    return redirect('menu')
-
-def cart_count(request):
+def view_cart(request):
     cart = request.session.get('cart', {})
-    return sum(cart.values())
+    cart_items = []
+    total_price = 0
+
+    for item_id, quantity in cart.items():
+        menu_item = get_object_or_404(MenuItem, id=item_id)
+        subtotal = menu_item.price * quantity
+        total_price += subtotal
+        cart_items.append({
+            'item': menu_item,
+            'quantity': quantity,
+            'subtotal': subtotal
+        })
+    return render(request, 'cart.html',{
+        'cart_items': cart_items,
+        'total_price': total_price
+    })
 
 def order_page(request):
     return render(request, "order.html")

@@ -15,6 +15,7 @@ from django.core.mail import send_mail
 from .forms import ContactForm, FeedbackForm
 from .models import MenuItem, ContactSubmission, RestaurantInfo
 from .serializers import MenuItemSerializer
+import random
 
 def handle_contact_form(request):
     # Handles the contact form logic separately flr clarity.

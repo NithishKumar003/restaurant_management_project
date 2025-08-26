@@ -11,6 +11,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db import DatabaseError
 from django.core.mail import send_mail
+from django.urls import reverse
 
 from .forms import ContactForm, FeedbackForm
 from .models import MenuItem, ContactSubmission, RestaurantInfo, Special
@@ -32,6 +33,10 @@ def handle_contact_form(request):
 def home_view(request):
 
     try:
+        breadcrumbs = [
+            ("Home", reverse("home")), #Current page
+        ]
+
         info = RestaurantInfo.objects.select_related("location").first()
         menu_items = MenuItem.objects.all()
 
@@ -49,7 +54,8 @@ def home_view(request):
             'restaurant_name': restaurant_name,
             'restaurant_address': restaurant_address, 
             'menu_items': menu_items,
-            'specials': specials
+            'specials': specials,
+            'breadcrumbs': breadcrumbs
         })
 
     except DatabaseError:
@@ -57,6 +63,10 @@ def home_view(request):
         return redirect('error_page')
 
 def homepage(request):
+    breadcrumbs = [
+        ("Home", reverse("home")),
+        ("Menu", reverst('menu')),
+    ]
     restaurant = RestaurantInfo.objects.select_related('location').first()
     query = request.GET.get('q', '')
     menu_items = MenuItem.objects.all()
@@ -78,6 +88,7 @@ def homepage(request):
         'menu_items': menu_items,
         'search_query' : query,
         "cart_items" : cart_items,
+        "breadcrumbs": breadcrumbs
     }
 
     return render(request, 'menu.html', context)
@@ -220,5 +231,10 @@ def privacy_policy(request):
     return render(request, 'privacy_policy.html')
 
 def order_confirmation(request):
+    breadcrumbs =[
+        ("Home", reverse('home')),
+        ("Orders", reverse('orders')),
+        ("Conformation", ""),
+    ]
     order_number = random.randint(1000, 9999)
-    return render(request, 'order_confirmation.html', {'order_number': order_number})
+    return render(request, 'order_confirmation.html', {'order_number': order_number, 'breadcrumbs': breadcrumbs})

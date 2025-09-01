@@ -115,11 +115,12 @@ def contact_page(request):
             except Exception as e:
                 messages.error(request, f"Error sending email: {e}")
     else:
-        form = ContactForm("thankyou")
+        form = ContactForm()
 
-        return redirect()
+        return redirect("thankyou")
+    restaurant_info = RestaurantInfo.objects.first()
 
-    return render(request, 'contact.html', {'form': form})     
+    return render(request, 'contact.html', {'form': form, "restaurant_info" : restaurant_info})     
 
 def thankyou(request):
     return redirect(request, "thankyou.html")   

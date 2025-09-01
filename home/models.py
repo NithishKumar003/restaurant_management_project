@@ -84,6 +84,7 @@ class RestaurantInfo(models.Model):
     location = models.OneToOneField(
         RestaurantLocation, on_delete=models.CASCADE, related_name="restaurant_info"
     )
+    image = models.ImageField(upload_to"restaurant/", blank=True, null=True)
 
     def __str__(self):
         return self.name

@@ -18,7 +18,8 @@ urlpatterns = [
     path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
     path('order-confirmation/', views.order_confirmation, name='order_confirmation'),
     path('cart/', views.view_cart, name='view_cart'),
-    path('cart/add/<int:item_id>', views.add_to_cart, name='add_to_cart')
+    path('cart/add/<int:item_id>', views.add_to_cart, name='add_to_cart'),
+    path('thankyou/', views.thankyou, name='thankyou')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

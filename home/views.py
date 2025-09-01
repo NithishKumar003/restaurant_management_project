@@ -115,9 +115,14 @@ def contact_page(request):
             except Exception as e:
                 messages.error(request, f"Error sending email: {e}")
     else:
-        form = ContactForm()
+        form = ContactForm("thankyou")
 
-    return render(request, 'contact.html', {'form': form})        
+        return redirect()
+
+    return render(request, 'contact.html', {'form': form})     
+
+def thankyou(request):
+    return redirect(request, "thankyou.html")   
 
 
 @api_view(['GET'])

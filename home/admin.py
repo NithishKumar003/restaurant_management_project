@@ -9,3 +9,6 @@ admin.site.register(UserProfile)
 admin.site.register(RestaurantInfo)
 admin.site.register(RestaurantLocation)
 admin.site.register(Special)
+@admin.register(OpeningHour)
+class OpeningHourAdmin(admin.ModelAdmin):
+    list_display = {"day", "open_time", "close_time"}

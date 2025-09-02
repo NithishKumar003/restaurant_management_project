@@ -19,13 +19,13 @@ class ContactForm(forms.ModelForm):
 class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Feedback
-        fields = ['name', 'comments']
+        fields = ['name', 'feedback_text']
         widgets = {
             'name': forms.TextInput(attrs={
                 'placeholder': 'Your Name (optional)',
                 'class': 'form-control'
             }),
-            'comments': forms.Textarea(attrs={
+            'feedback_text': forms.Textarea(attrs={
                 'rows': 4,
                 'placeholder': 'Write your feedback here...',
                 'class': 'form-control'
@@ -33,5 +33,5 @@ class FeedbackForm(forms.ModelForm):
         }
         lables = {
             'name': 'Name', 
-            'comments': 'Your Feedback', 
+            'feedback_text': 'Your Feedback', 
         }

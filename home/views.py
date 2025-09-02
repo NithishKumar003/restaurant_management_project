@@ -200,7 +200,7 @@ def reservations(request):
         'restaurant_name': info.name if info else 'My Tasty Restaurant',
     })
 
-def feedback_page_view(request):
+def feedback_view(request):
     if request.method == 'POST':
         form = FeedbackForm(request.POST)
         if form.is_valid():

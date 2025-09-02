@@ -9,7 +9,7 @@ urlpatterns = [
     path('about/', views.about_page, name='about'),
     path('contact/', views.contact_page, name='contact'),
     path('reservations/', views.reservations, name='reservations'),
-    path('feedback/', views.feedback_page_view, name='feedback_page'),
+    path('feedback/', views.feedback_view, name='feedback_page'),
     path('menu/add/<int:item_id>/', views.add_to_cart, name='add_to_cart'),
     path('faq/', views.faq, name='faq'),
     path('login/', auth_views.LoginView.as_view(template_name="login.html"), name="login"),

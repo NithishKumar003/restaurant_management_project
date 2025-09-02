@@ -125,6 +125,17 @@ def contact_page(request):
 def thankyou(request):
     return redirect(request, "thankyou.html")   
 
+def contact_view(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        message = request.POST.get("message")
+
+        contact.qbjects.create(name = name, email = email, message = message)
+        return redirect("thank_you")
+    restaurant_info = RestaurantInfo.objects.first()
+    return render(request, "contact.html", {"restaurant_info": restaurant_info})
+
 
 @api_view(['GET'])
 def menu_api(request):

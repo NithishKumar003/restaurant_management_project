@@ -42,6 +42,7 @@ def home_view(request):
 
         restaurant_name = info.name if info else "My Tasty Restaurant"
         specials = Special.objects.all()
+        opening_hours = OpeningHour.objects.all()
 
         location = getattr(info, "location", None)
         restaurant_address = (
@@ -55,7 +56,8 @@ def home_view(request):
             'restaurant_address': restaurant_address, 
             'menu_items': menu_items,
             'specials': specials,
-            'breadcrumbs': breadcrumbs
+            'breadcrumbs': breadcrumbs,
+            'opening_hour': opening_hour
         })
 
     except DatabaseError:

@@ -83,6 +83,7 @@
                         <h3 style="margin: 0 0 10px;">{{ item.name }}</h3>
                         <p style="margin: 0 0 10px;">{{ item.description }}</p>
                         <strong style="color: #e63946"> Rs.{{ item.price }}</strong>
+                        <p style="font-weight: bold; color: green;">{{ item|availability_status }}</p>
                     </div>
                 </div>
             {% empty %}

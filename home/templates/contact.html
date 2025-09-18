@@ -7,31 +7,31 @@
         <meta charset="UTF-8">
         <title> Contact Us </title>
     </head>
-    <body>
+    <body style="font-family: Airel, sans-serif; background-color: #f9f9f9; margin:0; padding:0;">
     
-        <form id="contactForm" action="{% url 'contact_page' %}" method="post">
+        <form id="contactForm" style="display: flex; flex-direction: column; gap: 15px;" action="{% url 'contact_page' %}" method="post">
             {% csrf_token %}
 
-            <label for="id_name"> Name: </label><br>
+            <label for="id_name" style="font-weight: bold; color: #333"> Name: </label><br>
             {{ form.name }}<br>
             {% for error in form.name.errors %}
-                <span style="color: red;">{{ error }}</span><br>
+                <span style="color: red; font-size: 13px;">{{ error }}</span><br>
             {% endfor %}
 
-            <label for="id_email"> Email: </label><br>
+            <label for="id_email" style="font-weight: bold; color: #333;"> Email: </label><br>
             {{ form.email }}<br>
             {% for error in form.email.errors %}
-                <span style="color: red;"> {{ error }}</span><br>
+                <span style="color: red; font-size:13px"> {{ error }}</span><br>
             {% endfor %}
 
-            <label for="id_message"> Message: </label><br>
+            <label for="id_message" style="font-weight: bold; color:#333;"> Message: </label><br>
             {{ form.message }}<br>
             {% for error in form.message.errors %}
-                <span style="color:red;">{{ error }}</span><br>
+                <span style="color:red; font-size: 13px;">{{ error }}</span><br>
             {% endfor %}
 
             <br>
-            <button type="submit" style="padding: 10px 20px; background: #4caf50; color: white; border: none; cursor: pointer;">
+            <button type="submit" style="padding: 12px; background: #4caf50; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; transition: 0.3s;">
                 Send
             </button>
         </form>

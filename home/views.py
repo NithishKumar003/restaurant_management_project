@@ -167,20 +167,9 @@ def menu_page(request):
 
     return render(request, "menu.html", {"menu_items": menu_items})
 
-def about_page(request):
-    try:
-        info = RestaurantInfo.objects.first()
-        
-        return render(request, 'about.html', {
-            'restaurant_name': info.name if info else "My Tasty Restaurant",
-            'restaurant_description': getattr(info, 'description', 'No description available.')
-        })
-
-    except DatabaseError:
-        messages.error(request, "unable to load about page due to database issue.")
-        return render(request, 'error.html', {
-            'error_message': 'There was a problem loading the about page.'
-        })
+def about_us(request):
+    about_info = About.objects.first()
+    return render(request, "about.html", {"about_info": about_info})
 
 def custom_404_view(request, exception):
     return render(request, '404.html', status=404)

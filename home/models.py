@@ -114,3 +114,9 @@ class OpeningHour(models.Model):
 
     def __str__(self):
         return f"{self.day}: {self.open_time} - {self.close_time}"
+
+class About(models.Model):
+    description = models.TextField()
+
+    def __str__(self):
+        return "About Us Information"

@@ -14,7 +14,7 @@ from django.core.mail import send_mail
 from django.urls import reverse
 
 from .forms import ContactForm, FeedbackForm
-from .models import MenuItem, ContactSubmission, RestaurantInfo, Special
+from .models import MenuItem, ContactSubmission, RestaurantInfo, Special, Chef
 from .serializers import MenuItemSerializer
 import random
 
@@ -246,3 +246,7 @@ def order_confirmation(request):
     ]
     order_number = random.randint(1000, 9999)
     return render(request, 'order_confirmation.html', {'order_number': order_number, 'breadcrumbs': breadcrumbs})
+
+def chef_detail(request):
+    chef = Chef.objects.first()
+    return render(request, 'chef_detail.html', {'chef': chef})

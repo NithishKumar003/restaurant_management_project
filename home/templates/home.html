@@ -104,6 +104,14 @@
                     </p>
                 </div>
 
+                {% if chef %}
+                <div style="margin-top: 3rem; background-color: #f7f7f7; padding:1.5rem; border-radius: 1.2rem; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 500px; margin-left:auto;">
+                    <h2 style="">Our Chef</h2>
+                    <h3>{{ chef.name }}</h3>
+                    <p> {{ chef.bio }}</p>
+                </div>
+                {% endif %}
+
 
                 <!-- Menu items will be displayed here -->
                 <div id="menu-list">

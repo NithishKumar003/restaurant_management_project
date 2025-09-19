@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto text-center p-6">
+    <h2 class="text-3xl font-bold mb-4">Meet Our Chef</h2>
+    {% if chef %}
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <img src="{{ chef.image.url }}" alt="{{ chef.name }}" class="mx-auto rounded-full w-40 h-40 object-cover mb-4 shadow-md">
+            <h3 class="text-xl font-semibold">{{ chef.name }}</h3>
+            <p class="text-gray-600 mt-2">{{ chef.bio }}</p>
+        </div>
+    {% else %}
+        <p>No chef information available yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

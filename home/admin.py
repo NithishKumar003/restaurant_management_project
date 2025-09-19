@@ -16,3 +16,7 @@ class OpeningHourAdmin(admin.ModelAdmin):
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
     list_display = ("description")
+
+@admin.register(Chef)
+class ChefAdmin(admin.ModelAdmin):
+    list_display = ('name',)

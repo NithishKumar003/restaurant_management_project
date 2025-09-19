@@ -72,6 +72,7 @@ def homepage(request):
     restaurant = RestaurantInfo.objects.select_related('location').first()
     query = request.GET.get('q', '')
     menu_items = MenuItem.objects.all()
+    chef = Chef.objects.all()
     cart_items = cart_count(request)
 
     if query:
@@ -90,7 +91,8 @@ def homepage(request):
         'menu_items': menu_items,
         'search_query' : query,
         "cart_items" : cart_items,
-        "breadcrumbs": breadcrumbs
+        "breadcrumbs": breadcrumbs,
+        "chef" : chef
     }
 
     return render(request, 'menu.html', context)

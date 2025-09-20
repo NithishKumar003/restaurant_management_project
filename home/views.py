@@ -131,14 +131,18 @@ def thankyou(request):
 
 def contact_view(request):
     if request.method == "POST":
-        name = request.POST.get("name")
-        email = request.POST.get("email")
-        message = request.POST.get("message")
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("thank_you")
+    else:
+        form = ContactForm()
 
-        contact.qbjects.create(name = name, email = email, message = message)
-        return redirect("thank_you")
     restaurant_info = RestaurantInfo.objects.first()
-    return render(request, "contact.html", {"restaurant_info": restaurant_info})
+    return render(request, "contact.html", {
+        "restaurant_info": restaurant_info,
+        "form": form
+    })
 
 
 @api_view(['GET'])

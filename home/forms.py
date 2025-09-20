@@ -16,6 +16,15 @@ class ContactForm(forms.ModelForm):
             'message': 'Message',
         }
 
+        email = forms.EmailField(
+            required=True,
+            widget=forms.EmailInput(attrs={'placeholder': 'Your email address'}),
+            error_messages={
+                'invalid': 'Enter a valid email address.',
+                'required': 'Email is required.'
+            }
+        )
+
 class FeedbackForm(forms.ModelForm):
     class Meta:
         model = Feedback

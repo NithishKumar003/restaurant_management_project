@@ -20,3 +20,7 @@ class AboutAdmin(admin.ModelAdmin):
 @admin.register(Chef)
 class ChefAdmin(admin.ModelAdmin):
     list_display = ('name',)
+
+@admin.register(MenuItem)
+class MenuItemAdmin(admin.ModelAdmin):
+    list_display = ("name",)

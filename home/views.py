@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.generics import ListAPIView
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
@@ -14,8 +15,8 @@ from django.core.mail import send_mail
 from django.urls import reverse
 
 from .forms import ContactForm, FeedbackForm
-from .models import MenuItem, ContactSubmission, RestaurantInfo, Special, Chef
-from .serializers import MenuItemSerializer
+from .models import MenuItem, ContactSubmission, RestaurantInfo, Special, Chef, MenuCategory
+from .serializers import MenuItemSerializer, MenuCategorySerializer
 import random
 
 def handle_contact_form(request):
@@ -256,3 +257,7 @@ def order_confirmation(request):
 def chef_detail(request):
     chef = Chef.objects.first()
     return render(request, 'chef_detail.html', {'chef': chef})
+
+class MenuCategoryListView(ListAPIView):
+    querysrt = MenuCategory.objects.all()
+    serializer_class = MenuCategorySerializer
